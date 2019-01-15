@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:37:41 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 14:50:42 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 15:19:44 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,11 +24,12 @@ struct				s_point
 
 typedef struct s_point t_point;
 
-
-
 struct				s_map
 {
 	char			**map;
+	t_point			piece_start;
+	t_point			*piece;
+	int				nb_point;
 	t_point			size;
 	char			player;
 };
