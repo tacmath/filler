@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:49:02 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 16:17:45 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 16:59:59 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,17 +39,20 @@ int ft_get_map(t_map *map, char *line)
 	return (1);
 }
 
-int ft_piece_realloc(t_map *map)
+int ft_piece_realloc(t_map *map, int x, int y)
 {
 	t_point *tmp_piece;
 	int		n;
 
+	map->nb_point++;
 	if (!(tmp_piece = malloc(sizeof(t_point) * map->nb_point)))
 		return (0);
 	n = -1;
 	while (++n < map->nb_point - 1)
 		tmp_piece[n] = map->piece[n];
-	free(map->piece);
+	tmp_piece[n].x = x;
+	tmp_piece[n].y = y;
+	ft_memdel((void*)(&map->piece));
 	map->piece = tmp_piece;
 	return (1);
 }
@@ -72,12 +75,7 @@ int ft_get_piece(t_map *map)
 		while (line[++coord.x])
 		{
 			if (line[coord.x] == '*')
-			{
-				map->piece[map->nb_point].x = coord.x;
-				map->piece[map->nb_point].y = n;
-				map->nb_point++;
-				ft_piece_realloc(map);
-			}
+				ft_piece_realloc(map, coord.x, n);
 		}
 		free(line);
 	}
@@ -92,8 +90,7 @@ int main(void)
 
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
-	if (!(map->piece = malloc(sizeof(t_point))))
-		return (0);
+	map->piece = 0;
 	n = -1;
 	get_next_line(0, &line);
 	if (line[10] == '1')
@@ -102,8 +99,8 @@ int main(void)
 		map->player = 'x';
 	ft_get_map(map, line);
 	ft_get_piece(map);
-	ft_putnbr(map->piece[0].x);
-	ft_putnbr(map->piece[1].x);
+	ft_putnbr(map->piece[0].y);
+	ft_putnbr(map->piece[1].y);
 	ft_putnbr(map->nb_point);
 	return (0);
 }
