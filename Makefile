@@ -34,7 +34,7 @@ $(LIB): $(LIBDIR)
 	make -C $(LIBDIR)
 
 $(NAME): $(LIB) $(OBJ) $(INC)
-	gcc -o $@ $(LIB) $(OBJ) $(FLAG)
+	gcc -o $@ $(OBJ) $(FLAG) $(LIB)
 
 clean:
 	rm -f $(OBJ)

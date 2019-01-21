@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "filler.h"
+#include "libft.h"
 
 int ft_get_map(t_map *map, char *line)
 {
@@ -82,16 +83,38 @@ int ft_get_piece(t_map *map)
 	return (1);
 }
 
+void ft_normalise(t_map *map)
+{
+	int n;
+	t_point min;
+
+	min.x = map->piece[0].x;
+	min.y = map->piece[0].y;
+	n = 0;
+	while (++n < map->nb_point)
+	{
+		if (map->piece[n].x < min.x)
+			min.x = map->piece[n].x;
+		if (map->piece[n].y < min.y)
+			min.y = map->piece[n].y;
+	}
+	n = -1;
+	while (++n < map->nb_point)
+	{
+		map->piece[n].x -= min.x;
+		map->piece[n].y -= min.y;
+	}
+	map->piece_start = min;
+}
+
 int main(void)
 {
 	t_map	*map;
 	char	*line;
-	int		n;
 
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	map->piece = 0;
-	n = -1;
 	get_next_line(0, &line);
 	if (line[10] == '1')
 		map->player = 'o';
@@ -99,8 +122,26 @@ int main(void)
 		map->player = 'x';
 	ft_get_map(map, line);
 	ft_get_piece(map);
+	ft_normalise(map);
+	ft_putnbr(map->piece_start.x);
+	ft_putnbr(map->piece_start.y);
+	ft_putchar('\n');
+
+	ft_putnbr(map->piece[0].x);
 	ft_putnbr(map->piece[0].y);
+	ft_putchar('\n');
+ft_putnbr(map->piece[1].x);
 	ft_putnbr(map->piece[1].y);
-	ft_putnbr(map->nb_point);
+ft_putchar('\n');
+
+ft_putnbr(map->piece[2].x);
+	ft_putnbr(map->piece[2].y);
+	ft_putchar('\n');
+
+ft_putnbr(map->piece[3].x);
+	ft_putnbr(map->piece[3].y);
+	ft_putchar('\n');
+
+ft_putnbr(map->nb_point);
 	return (0);
 }

@@ -100,7 +100,7 @@ INCFILES = libft.h
 SRC = $(addprefix $(SRCDIR),$(SRCFILES))
 INC = $(addprefix $(INCDIR),$(INCFILES))
 OBJ = $(SRC:.c=.o)
-FLAG = -Wall #-Werror -Wextra
+FLAG = #-Wall -Werror -Wextra
 
 all: $(NAME)
 
