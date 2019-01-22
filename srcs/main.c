@@ -40,6 +40,28 @@ int ft_get_map(t_map *map, char *line)
 	return (1);
 }
 
+int ft_fill_map(t_map *map)
+{
+	char *line;
+	int n;
+
+	n = -1;
+	while (ft_strncmp(line, "Plateau", 7))
+	{
+		get_next_line(0, &line);
+		free(line);
+	}
+	get_next_line(0, &line);
+	free(line);
+	while (++n < map->size.y)
+	{
+		get_next_line(0, &line);
+		map->map[n] = ft_strcpy(map->map[n], &(line[4]));
+		free(line);
+	}
+	return (1);
+}
+
 int ft_piece_realloc(t_map *map, int x, int y)
 {
 	t_point *tmp_piece;
@@ -155,6 +177,17 @@ int ft_check(t_map *map, int x, int y)
 	return (1);
 }
 
+void ft_free_struct(t_map *map)
+{
+	int n;
+
+	n = -1;
+	while (++n < map->size.y)
+		free(map->map[n]);
+	free(map->map);
+	free(map->piece);
+}
+
 int main(void)
 {
 	t_map	*map;
@@ -171,5 +204,7 @@ int main(void)
 	ft_get_map(map, line);
 	ft_get_piece(map);
 	ft_normalise(map);
+	ft_get_piece_len(map);
+	ft_free_struct(map);
 	return (0);
 }
