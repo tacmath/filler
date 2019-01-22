@@ -28,6 +28,7 @@ struct				s_map
 {
 	char			**map;
 	t_point			piece_start;
+	t_point			piece_len;
 	t_point			*piece;
 	int				nb_point;
 	t_point			size;
