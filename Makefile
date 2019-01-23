@@ -6,7 +6,7 @@
 #    By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/05 12:24:50 by mtaquet      #+#   ##    ##    #+#        #
-#    Updated: 2018/12/10 02:19:29 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/23 12:56:58 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,6 +17,9 @@ SRCDIR = srcs/
 INCDIR = includes/
 LIBFILES = libft.a
 SRCFILES = main.c\
+		   input.c\
+		   check.c\
+		   utils.c\
 
 INCFILES = filler.h
 LIB = $(addprefix $(LIBDIR),$(LIBFILES))
