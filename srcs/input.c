@@ -52,6 +52,13 @@ int ft_fill_map(t_map *map)
 	}
 	get_next_line(0, &line);
 	free(line);
+	while (ft_strncmp(line, "Plateau", 7))
+	{
+		get_next_line(0, &line);
+		free(line);
+	}
+	get_next_line(0, &line);
+	free(line);
 	while (++n < map->size.y)
 	{
 		get_next_line(0, &line);
