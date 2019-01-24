@@ -22,10 +22,10 @@ int ft_check(t_map *map, int x, int y)
 	n = -1;
 	while (++n < map->nb_point)
 	{
-		if (map->map[map->piece[n].y + y][map->piece[n].x + x] != '.' &&
-			map->map[map->piece[n].y + y][map->piece[n].x + x] != map->player)
+		if (map->map[map->piece[n].y + y][map->piece[n].x + x] != 0 &&
+			map->map[map->piece[n].y + y][map->piece[n].x + x] != 1)
 			return (0);
-		if (map->map[map->piece[n].y + y][map->piece[n].x + x] == map->player)
+		if (map->map[map->piece[n].y + y][map->piece[n].x + x] == 1)
 			co++;
 	}
 	if (co != 1)

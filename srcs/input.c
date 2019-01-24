@@ -13,6 +13,29 @@
 
 #include "filler.h"
 
+char	*ft_get_line(t_map *map, char *dest, char *str)
+{
+	int n;
+	int m;
+
+	n = -1;
+	m = 0;
+	while (str[++n] != ' ')
+		;
+	while (str[++n])
+	{
+		if (str[n] == '.')
+			dest[m] = 0;
+		else if (str[n] == map->player)
+			dest[m] = 1;
+		else
+			dest[m] = -1;
+		m++;
+	}
+	free(str);
+	return (dest);
+}
+
 int ft_get_map(t_map *map, char *line)
 {
 	int n;
@@ -33,8 +56,9 @@ int ft_get_map(t_map *map, char *line)
 	while (++n < map->size.y)
 	{
 		get_next_line(0, &line);
-		map->map[n] = ft_strdup(&(line[4]));
-		free(line);
+		if (!(map->map[n] = malloc(sizeof(char) * map->size.x)))
+			return (0);
+		map->map[n] = ft_get_line(map, map->map[n], line);
 	}
 	return (1);
 }
@@ -62,8 +86,7 @@ int ft_fill_map(t_map *map)
 	while (++n < map->size.y)
 	{
 		get_next_line(0, &line);
-		map->map[n] = ft_strcpy(map->map[n], &(line[4]));
-		free(line);
+		map->map[n] = ft_get_line(map, map->map[n], line);
 	}
 	return (1);
 }
