@@ -32,6 +32,7 @@ struct				s_map
 	t_point			*piece;
 	int				nb_point;
 	t_point			size;
+	t_point			enemie;
 	char			player;
 };
 
@@ -44,5 +45,6 @@ int ft_check(t_map *map, int x, int y);
 void ft_normalise(t_map *map);
 void ft_get_piece_len(t_map *map);
 void ft_free_struct(t_map *map);
+void ft_resolve(t_map *map);
 
 #endif

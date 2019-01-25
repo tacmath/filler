@@ -19,6 +19,7 @@ LIBFILES = libft.a
 SRCFILES = main.c\
 		   input.c\
 		   check.c\
+		   resol.c\
 		   utils.c\
 
 INCFILES = filler.h

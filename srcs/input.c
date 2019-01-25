@@ -13,11 +13,14 @@
 
 #include "filler.h"
 
-char	*ft_get_line(t_map *map, char *dest, char *str)
+char	*ft_get_line(t_map *map, char *dest)
 {
 	int n;
 	int m;
+	char *str;
 
+	if (get_next_line(0, &str) < 1)
+		return (0);
 	n = -1;
 	m = 0;
 	while (str[++n] != ' ')
@@ -55,10 +58,9 @@ int ft_get_map(t_map *map, char *line)
 		return (0);
 	while (++n < map->size.y)
 	{
-		get_next_line(0, &line);
 		if (!(map->map[n] = malloc(sizeof(char) * map->size.x)))
 			return (0);
-		map->map[n] = ft_get_line(map, map->map[n], line);
+		map->map[n] = ft_get_line(map, map->map[n]);
 	}
 	return (1);
 }
@@ -76,18 +78,8 @@ int ft_fill_map(t_map *map)
 	}
 	get_next_line(0, &line);
 	free(line);
-	while (ft_strncmp(line, "Plateau", 7))
-	{
-		get_next_line(0, &line);
-		free(line);
-	}
-	get_next_line(0, &line);
-	free(line);
 	while (++n < map->size.y)
-	{
-		get_next_line(0, &line);
-		map->map[n] = ft_get_line(map, map->map[n], line);
-	}
+		map->map[n] = ft_get_line(map, map->map[n]);
 	return (1);
 }
 

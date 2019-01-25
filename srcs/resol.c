@@ -7,21 +7,21 @@ int ft_check_enemie_co(t_map *map, int x, int y)
 
 	co = 0;
 	n = -1;
-	while (++n < map->nb_piece)
+	while (++n < map->nb_point)
 	{
-		if (x > 0 && map->map[map->piece[n].x + x - 1] = -1)
+		if (x > 0 && map->map[map->piece[n].y + y][map->piece[n].x + x - 1] == -1)
 			co++;
-		if (x < map->size.x && map->map[map->piece[n].x + x + 1] = -1)
+		if (x < map->size.x && map->map[map->piece[n].y + y][map->piece[n].x + x + 1] == -1)
 			co++;
-		if (y > 0 && map->map[map->piece[n].y + y - 1] = -1)
+		if (y > 0 && map->map[map->piece[n].y + y - 1][map->piece[n].x + x] == -1)
 			co++;
-		if (y < map->size.x && map->map[map->piece[n].y + y + 1] = -1)
+		if (y < map->size.x && map->map[map->piece[n].y + y + 1][map->piece[n].x + x] == -1)
 			co++;		
 	}
 	return (co);
 }
 
-void ft_resol(t_map *map)
+void ft_resolve(t_map *map)
 {
 	int x;
 	int y;
@@ -37,12 +37,22 @@ void ft_resol(t_map *map)
 		x = -1;
 		while (++x < map->size.x - map->piece_len.x)
 			if (ft_check(map, x, y))
+			{
 				if (co_enemie < ft_check_enemie_co(map, x, y))
 				{
 					co_enemie = ft_check_enemie_co(map, x, y);
 					place.x = x;
 					place.y = y;
 				}
+				if (co_enemie == 0 && (ft_abs(place.x - map->enemie.x)
+					+ ft_abs(place.y - map->enemie.y)) >
+					(ft_abs(x - map->enemie.x) + ft_abs(y - map->enemie.y)))
+				{
+						
+					place.x = x;
+					place.y = y;
+				}
+			}
 	}
 	ft_putnbr(place.x - map->piece_start.x);
 	ft_putchar(' ');
