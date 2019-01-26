@@ -18,13 +18,6 @@ int ft_get_player(t_map *map)
 	char	*line;
 
 	get_next_line(0, &line);
-	while (!ft_strstr(line, "mtaquet.filler"))
-	{
-		free(line);
-		get_next_line(0, &line);
-	}
-	free(line);
-	get_next_line(0, &line);
 	if (line[10] == '1')
 		map->player = 'O';
 	else if (line[10] == '2')
@@ -61,13 +54,10 @@ int ft_init(t_map *map)
 	get_next_line(0, &line);
 	ft_get_map(map, line);
 	ft_get_enemie(map);
-	if (map->player == 'O')
-	{
-		ft_get_piece(map);
-		ft_normalise(map);
-		ft_get_piece_len(map);
-		ft_resolve(map);
-	}
+	ft_get_piece(map);
+	ft_normalise(map);
+	ft_get_piece_len(map);
+	ft_resolve(map);
 	return (1);
 }
 
@@ -80,14 +70,8 @@ int main(void)
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	ft_init(map);
-	
-	get_next_line(0, &line);
-	while (get_next_line(0, &line) == 1)
+	while (get_next_line(0, &line) > -1)
 	{
-
-		free(line);
-		get_next_line(0, &line);
-		free(line);
 		ft_fill_map(map);
 		ft_get_piece(map);
 		ft_normalise(map);
