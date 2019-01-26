@@ -11,11 +11,11 @@ int ft_check_enemie_co(t_map *map, int x, int y)
 	{
 		if (x > 0 && map->map[map->piece[n].y + y][map->piece[n].x + x - 1] == -1)
 			co++;
-		if (x < map->size.x && map->map[map->piece[n].y + y][map->piece[n].x + x + 1] == -1)
+		else if (x < map->size.x && map->map[map->piece[n].y + y][map->piece[n].x + x + 1] == -1)
 			co++;
-		if (y > 0 && map->map[map->piece[n].y + y - 1][map->piece[n].x + x] == -1)
+		else if (y > 0 && map->map[map->piece[n].y + y - 1][map->piece[n].x + x] == -1)
 			co++;
-		if (y < map->size.x && map->map[map->piece[n].y + y + 1][map->piece[n].x + x] == -1)
+		else if (y < map->size.x && map->map[map->piece[n].y + y + 1][map->piece[n].x + x] == -1)
 			co++;		
 	}
 	return (co);
