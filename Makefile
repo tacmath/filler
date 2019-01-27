@@ -6,7 +6,7 @@
 #    By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/05 12:24:50 by mtaquet      #+#   ##    ##    #+#        #
-#    Updated: 2019/01/23 12:56:58 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/27 12:25:49 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -39,6 +39,9 @@ $(LIB): $(LIBDIR)
 
 $(NAME): $(LIB) $(OBJ) $(INC)
 	gcc -o $@ $(OBJ) $(FLAG) $(LIB)
+
+move:
+	cp $(NAME) $(addprefix resources/players/,$(NAME))
 
 clean:
 	rm -f $(OBJ)

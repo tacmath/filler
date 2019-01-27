@@ -1,4 +1,6 @@
-seed = 9888
-players/superjeannot.filler won
+seed = 6872
+O: error on input
+players/mtaquet.filler: Segfault at 36
+players/abanlin.filler won
 Score:
-1305AGAINST609
+36AGAINST78

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:49:40 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/23 13:37:34 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/27 14:54:36 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,11 +44,6 @@ int ft_get_map(t_map *map, char *line)
 	int n;
 
 	n = -1;
-	while (ft_strncmp(line, "Plateau", 7))
-	{
-		free(line);
-		get_next_line(0, &line);
-	}
 	map->size.y = ft_atoi(&(line[8]));
 	map->size.x = ft_atoi(&(line[11]));
 	free(line);
@@ -62,24 +57,6 @@ int ft_get_map(t_map *map, char *line)
 			return (0);
 		map->map[n] = ft_get_line(map, map->map[n]);
 	}
-	return (1);
-}
-
-int ft_fill_map(t_map *map)
-{
-	char *line;
-	int n;
-
-	n = -1;
-	while (ft_strncmp(line, "Plateau", 7))
-	{
-		get_next_line(0, &line);
-		free(line);
-	}
-	get_next_line(0, &line);
-	free(line);
-	while (++n < map->size.y)
-		map->map[n] = ft_get_line(map, map->map[n]);
 	return (1);
 }
 
@@ -123,5 +100,23 @@ int ft_get_piece(t_map *map)
 		}
 		free(line);
 	}
+	ft_normalise(map);
+	ft_get_piece_len(map);
+	ft_resolve(map);
 	return (1);
 }
+
+int ft_fill_map(t_map *map)
+{
+	char *line;
+	int n;
+
+	n = -1;
+	get_next_line(0, &line);
+	free(line);
+	while (++n < map->size.y)
+		map->map[n] = ft_get_line(map, map->map[n]);
+	ft_get_piece(map);
+	return (1);
+}
+
