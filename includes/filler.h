@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:37:41 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/27 14:33:36 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/27 15:00:09 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ typedef struct s_map t_map;
 
 int ft_get_map(t_map *map, char *line);
 int ft_fill_map(t_map *map);
-int ft_get_piece(t_map *map);
+int ft_get_piece(t_map *map, int y);
 int ft_check(t_map *map, int x, int y);
 void ft_normalise(t_map *map);
 void ft_get_piece_len(t_map *map);

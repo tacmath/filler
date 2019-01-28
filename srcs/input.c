@@ -6,18 +6,18 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:49:40 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/27 14:54:36 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/28 14:32:52 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-char	*ft_get_line(t_map *map, char *dest)
+static char	*ft_get_line(t_map *map, char *dest)
 {
-	int n;
-	int m;
-	char *str;
+	int		n;
+	int		m;
+	char	*str;
 
 	if (get_next_line(0, &str) < 1)
 		return (0);
@@ -39,7 +39,7 @@ char	*ft_get_line(t_map *map, char *dest)
 	return (dest);
 }
 
-int ft_get_map(t_map *map, char *line)
+int			ft_get_map(t_map *map, char *line)
 {
 	int n;
 
@@ -47,7 +47,8 @@ int ft_get_map(t_map *map, char *line)
 	map->size.y = ft_atoi(&(line[8]));
 	map->size.x = ft_atoi(&(line[11]));
 	free(line);
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) < 1)
+		return (0);
 	free(line);
 	if (!(map->map = malloc(sizeof(char*) * map->size.y)))
 		return (0);
@@ -55,14 +56,15 @@ int ft_get_map(t_map *map, char *line)
 	{
 		if (!(map->map[n] = malloc(sizeof(char) * map->size.x)))
 			return (0);
-		map->map[n] = ft_get_line(map, map->map[n]);
+		if (!(map->map[n] = ft_get_line(map, map->map[n])))
+			return (0);
 	}
 	return (1);
 }
 
-static int ft_piece_realloc(t_map *map, int x, int y)
+static int	ft_piece_realloc(t_map *map, int x, int y)
 {
-	t_point *tmp_piece;
+	t_point	*tmp_piece;
 	int		n;
 
 	map->nb_point++;
@@ -78,25 +80,24 @@ static int ft_piece_realloc(t_map *map, int x, int y)
 	return (1);
 }
 
-int ft_get_piece(t_map *map)
+int			ft_get_piece(t_map *map, int y)
 {
-	int n;
-	t_point coord;
-	char *line;
+	int		n;
+	int		x;
+	char	*line;
 
 	map->nb_point = 0;
-	get_next_line(0, &line);
-	coord.y = ft_atoi(&(line[5]));
-	free(line);
 	n = -1;
-	while (++n < coord.y)
+	while (++n < y)
 	{
-		get_next_line(0, &line);
-		coord.x = -1;
-		while (line[++coord.x])
+		if (get_next_line(0, &line) < 1)
+			return (0);
+		x = -1;
+		while (line[++x])
 		{
-			if (line[coord.x] == '*')
-				ft_piece_realloc(map, coord.x, n);
+			if (line[x] == '*')
+				if (!ft_piece_realloc(map, x, n))
+					return (0);
 		}
 		free(line);
 	}
@@ -106,17 +107,19 @@ int ft_get_piece(t_map *map)
 	return (1);
 }
 
-int ft_fill_map(t_map *map)
+int			ft_fill_map(t_map *map)
 {
-	char *line;
-	int n;
+	char	*line;
+	int		n;
 
 	n = -1;
 	get_next_line(0, &line);
 	free(line);
 	while (++n < map->size.y)
 		map->map[n] = ft_get_line(map, map->map[n]);
-	ft_get_piece(map);
+	get_next_line(0, &line);
+	if (!ft_get_piece(map, ft_atoi(&(line[5]))))
+		return (0);
+	free(line);
 	return (1);
 }
-

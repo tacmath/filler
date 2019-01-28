@@ -6,14 +6,14 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:54:39 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/23 13:49:37 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/28 14:31:23 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int ft_check(t_map *map, int x, int y)
+int	ft_check(t_map *map, int x, int y)
 {
 	int n;
 	int co;

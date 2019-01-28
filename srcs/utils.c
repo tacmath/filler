@@ -6,17 +6,17 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:52:06 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/23 13:29:14 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/28 14:39:59 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void ft_normalise(t_map *map)
+void	ft_normalise(t_map *map)
 {
-	int n;
-	t_point min;
+	int		n;
+	t_point	min;
 
 	min.x = map->piece[0].x;
 	min.y = map->piece[0].y;
@@ -37,7 +37,7 @@ void ft_normalise(t_map *map)
 	map->piece_start = min;
 }
 
-void ft_get_piece_len(t_map *map)
+void	ft_get_piece_len(t_map *map)
 {
 	int n;
 
@@ -53,9 +53,30 @@ void ft_get_piece_len(t_map *map)
 	}
 }
 
-void ft_free_struct(t_map *map)
+int		ft_error_free(void **ap)
+{
+	if (ap && *ap)
+	{
+		free(*ap);
+		*ap = 0;
+	}
+	return (0);
+}
+
+int		ft_free_map(t_map *map)
 {
 	int n;
+
+	n = -1;
+	while (++n < map->size.y)
+		free(map->map[n]);
+	free(map->map);
+	return (0);
+}
+
+void	ft_free_struct(t_map *map)
+{
+	int	n;
 
 	n = -1;
 	while (++n < map->size.y)
