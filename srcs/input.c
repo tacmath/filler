@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:49:40 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/28 14:32:52 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/28 16:17:25 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,6 +59,7 @@ int			ft_get_map(t_map *map, char *line)
 		if (!(map->map[n] = ft_get_line(map, map->map[n])))
 			return (0);
 	}
+	ft_get_enemie(map);
 	return (1);
 }
 
@@ -103,7 +104,7 @@ int			ft_get_piece(t_map *map, int y)
 	}
 	ft_normalise(map);
 	ft_get_piece_len(map);
-	ft_resolve(map);
+	ft_resolve(map, -1, -1, -1);
 	return (1);
 }
 

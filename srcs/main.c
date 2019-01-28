@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:49:02 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/28 14:31:02 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/28 16:17:49 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,25 +29,6 @@ static int	ft_get_player(t_map *map)
 	return (1);
 }
 
-static void	ft_get_enemie(t_map *map)
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y < map->size.y)
-	{
-		x = -1;
-		while (++x < map->size.x)
-			if (map->map[y][x] == -1)
-			{
-				map->enemie.x = x;
-				map->enemie.y = y;
-				return ;
-			}
-	}
-}
-
 static int	ft_init(t_map *map)
 {
 	char	*line;
@@ -63,7 +44,6 @@ static int	ft_init(t_map *map)
 		{
 			if (!ft_get_map(map, line))
 				return (0);
-			ft_get_enemie(map);
 			if (get_next_line(0, &line) < 1)
 				return (0);
 			if (!ft_get_piece(map, ft_atoi(&(line[5]))))

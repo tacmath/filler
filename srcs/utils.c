@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:52:06 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/28 14:39:59 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/28 16:18:31 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,25 +53,23 @@ void	ft_get_piece_len(t_map *map)
 	}
 }
 
-int		ft_error_free(void **ap)
+void	ft_get_enemie(t_map *map)
 {
-	if (ap && *ap)
+	int x;
+	int y;
+
+	y = -1;
+	while (++y < map->size.y)
 	{
-		free(*ap);
-		*ap = 0;
+		x = -1;
+		while (++x < map->size.x)
+			if (map->map[y][x] == -1)
+			{
+				map->enemie.x = x;
+				map->enemie.y = y;
+				return ;
+			}
 	}
-	return (0);
-}
-
-int		ft_free_map(t_map *map)
-{
-	int n;
-
-	n = -1;
-	while (++n < map->size.y)
-		free(map->map[n]);
-	free(map->map);
-	return (0);
 }
 
 void	ft_free_struct(t_map *map)
