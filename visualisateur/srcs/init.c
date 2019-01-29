@@ -16,16 +16,13 @@
 int		ft_image_init(t_map *map)
 {
 	int trash[3];
-	int n;
 
 	trash[0] = 0;
 	trash[1] = 0;
 	trash[2] = 0;
 	map->img_ptr = mlx_new_image(map->mlx_ptr, map->size.x, map->size.y);
 	map->data = (int*)mlx_get_data_addr(map->img_ptr, &trash[0], &trash[1], &trash[2]);
-	n = -1;
-	while (++n < map->size.x * map->size.y)
-		map->data[n] = 0x262626;
+	map->filler = mlx_xpm_file_to_image(map->mlx_ptr, "srcs/Filler.xpm", &trash[0], &trash[1]);
 	return (1);
 }
 

@@ -38,6 +38,7 @@ struct					s_map
 	void				*mlx_ptr;
 	void				*win_ptr;
 	void				*img_ptr;
+	void				*filler;
 	int					*data;
 	char				*player1;
 	char				*player2;

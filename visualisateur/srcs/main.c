@@ -19,25 +19,25 @@ void	ft_get_start(t_map *map)
 	int y;
 
 	x = (map->size.x - map->size.x / 5) / map->plateau.x;
-	y = (map->size.y - map->size.y / 5) / map->plateau.y;
+	y = ((map->size.y - 300) - (map->size.y - 300) / 5) / map->plateau.y;
 	if (x < y)
 	{
-		map->start.x = ft_abs(x * map->plateau.x -  map->size.x) / 2;
-		map->start.y = ft_abs(x * map->plateau.y -  map->size.y) / 2;
+		map->start.x = ft_abs(x * map->plateau.x - map->size.x) / 2;
+		map->start.y = ft_abs(x * map->plateau.y - (map->size.y - 300)) / 2 + 300;
 		map->pix_len = x;
 	}
 	else
 	{
-		map->start.x = ft_abs(y * map->plateau.x -  map->size.x) / 2;
-		map->start.y = ft_abs(y * map->plateau.y -  map->size.y) / 2;
+		map->start.x = ft_abs(y * map->plateau.x - map->size.x) / 2;
+		map->start.y = ft_abs(y * map->plateau.y - (map->size.y - 300)) / 2 + 300;
 		map->pix_len = y;
 	}
 	y = map->start.y - 1;
-	while (++y < map->size.y - map->start.y)
+	while (++y < map->pix_len * map->plateau.y + map->start.y + 2)
 	{
 		x = map->start.x - 1;
-		while (++x < map->size.x - map->start.x)
-			map->data[x + y * map->size.x] = 0x666666;
+		while (++x < map->size.x - map->start.x + 2)
+			map->data[x + y * map->size.x] = 0x252525;
 	}
 }
 
@@ -60,10 +60,10 @@ void	ft_put_point(t_map *map, int x, int y, int color)
 {
 	t_point coord;
 
-	coord.y = y * map->pix_len + map->start.y + 2;
+	coord.y = y * map->pix_len + map->start.y + 1;
 	while (++coord.y < (y + 1) * map->pix_len + map->start.y)
 	{
-		coord.x = x * map->pix_len + map->start.x + 2;
+		coord.x = x * map->pix_len + map->start.x + 1;
 		while (++coord.x < (x + 1) * map->pix_len + map->start.x)
 				map->data[coord.x + coord.y * map->size.x] = color;
 	}
@@ -85,7 +85,7 @@ int ft_put_plateau(t_map *map)
 		while (++x < map->plateau.x)
 		{
 			if (line[4 + x] == '.')
-				ft_put_point(map, x, y, 0xBFBFBF);
+				ft_put_point(map, x, y, 0x373737);
 			else if (line[4 + x] == 'O' || line[4 + x] == 'o')
 				ft_put_point(map, x, y, 0xFF0000);
 			else if (line[4 + x] == 'X' || line[4 + x] == 'x')
@@ -94,6 +94,7 @@ int ft_put_plateau(t_map *map)
 		ft_memdel((void**)&line);
 	}
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img_ptr, 0, 0);
+	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->filler, (map->size.x - 850) / 2, 10);
 	return (1);
 }
 
