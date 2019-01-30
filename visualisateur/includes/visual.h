@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 14:02:26 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/30 16:57:41 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,10 +56,11 @@ struct					s_map
 typedef struct s_map	t_map;
 
 int						ft_destroy(t_map *map);
+void					ft_get_len_plateau(t_map *map, char *line);
 int						deal_key(int key, t_map *map);
 void					ft_free_map(t_map *map);
 int						ft_struct_init(t_map *map);
-void ft_put_point(t_map *map, int x, int y, int color);
-void ft_draw(t_map *map);
+void					ft_put_point(t_map *map, int x, int y, int color);
+void					ft_draw(t_map *map);
 
 #endif
