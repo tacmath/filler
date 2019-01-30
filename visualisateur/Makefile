@@ -6,7 +6,7 @@
 #    By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/05 12:24:50 by mtaquet      #+#   ##    ##    #+#        #
-#    Updated: 2019/01/29 14:41:57 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/30 16:30:12 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,6 +19,7 @@ INCDIR = includes/
 LIBFILES = libft.a
 MLXFILES = libmlx.a
 SRCFILES = init.c\
+		   draw.c\
 		   main.c\
 		   event.c\
 		   util.c\

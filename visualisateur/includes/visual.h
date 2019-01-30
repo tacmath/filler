@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/29 14:50:47 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/30 14:02:26 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,8 +17,8 @@
 # include "mlx.h"
 # define TRUE				1
 # define FALSE				0
-# define LENGTH				1300
-# define WIDTH				900
+# define WIDTH				1000
+# define HEIGHT				900
 # define KEY_PRESS			2
 # define BUTTON_RELEASE		5
 # define MOTION_NOTIFY		6
@@ -42,8 +42,11 @@ struct					s_map
 	int					*data;
 	char				*player1;
 	char				*player2;
+	char				*path;
 	int					p1_point;
 	int					p2_point;
+	int					p1_color;
+	int					p2_color;
 	int					pix_len;
 	t_point				start;
 	t_point				plateau;
@@ -56,5 +59,7 @@ int						ft_destroy(t_map *map);
 int						deal_key(int key, t_map *map);
 void					ft_free_map(t_map *map);
 int						ft_struct_init(t_map *map);
+void ft_put_point(t_map *map, int x, int y, int color);
+void ft_draw(t_map *map);
 
 #endif
