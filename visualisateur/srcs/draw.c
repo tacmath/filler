@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/30 15:57:56 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 17:01:06 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/31 12:10:12 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ void		ft_put_point(t_map *map, int x, int y, int color)
 	}
 }
 
-static void	ft_put_player(t_map *map)
+static int	ft_put_player(t_map *map)
 {
 	int		x;
 	char	*tmp;
@@ -41,16 +41,19 @@ static void	ft_put_player(t_map *map)
 	x = map->size.x / 2 + 150 - (ft_strlen(map->player2) * 10) / 2;
 	mlx_string_put(map->mlx_ptr, map->win_ptr,
 		x, 220, map->p2_color, map->player2);
-	tmp = ft_itoa(map->p1_point);
+	if (!(tmp = ft_itoa(map->p1_point)))
+		return (0);
 	x = 80 - (ft_strlen(tmp) * 10) / 2;
 	mlx_string_put(map->mlx_ptr, map->win_ptr,
 		x, map->start.y - 25, map->p1_color, tmp);
 	free(tmp);
-	tmp = ft_itoa(map->p2_point);
+	if (!(tmp = ft_itoa(map->p2_point)))
+		return (0);
 	x = map->size.x - 80 - (ft_strlen(tmp) * 10) / 2;
 	mlx_string_put(map->mlx_ptr, map->win_ptr,
 		x, map->start.y - 25, map->p2_color, tmp);
 	free(tmp);
+	return (1);
 }
 
 static void	ft_p1_score(t_map *map)
@@ -103,12 +106,14 @@ static void	ft_p2_score(t_map *map)
 	}
 }
 
-void		ft_draw(t_map *map)
+int			ft_draw(t_map *map)
 {
 	ft_p1_score(map);
 	ft_p2_score(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img_ptr, 0, 0);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr,
 		map->filler, (map->size.x - 850) / 2, 10);
-	ft_put_player(map);
+	if (!(ft_put_player(map)))
+		return (0);
+	return (1);
 }

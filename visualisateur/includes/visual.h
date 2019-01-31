@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 16:57:41 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/31 12:07:50 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 # define FALSE				0
 # define WIDTH				1000
 # define HEIGHT				900
+# define IMAGE_PATH			"srcs/"
 # define KEY_PRESS			2
 # define BUTTON_RELEASE		5
 # define MOTION_NOTIFY		6
@@ -61,6 +62,6 @@ int						deal_key(int key, t_map *map);
 void					ft_free_map(t_map *map);
 int						ft_struct_init(t_map *map);
 void					ft_put_point(t_map *map, int x, int y, int color);
-void					ft_draw(t_map *map);
+int						ft_draw(t_map *map);
 
 #endif

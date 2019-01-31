@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:49:40 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/28 16:17:25 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/31 12:00:37 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,9 +43,12 @@ int			ft_get_map(t_map *map, char *line)
 {
 	int n;
 
-	n = -1;
 	map->size.y = ft_atoi(&(line[8]));
-	map->size.x = ft_atoi(&(line[11]));
+	n = 8;
+	while (line[++n] != ' ')
+		;
+	map->size.x = ft_atoi(&(line[n]));
+	n = -1;
 	free(line);
 	if (get_next_line(0, &line) < 1)
 		return (0);

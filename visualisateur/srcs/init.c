@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 13:34:41 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 16:28:40 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/31 11:33:47 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@ static int	ft_image_init(t_map *map)
 {
 	int		trash[3];
 	char	*tmp;
+	char	*path;
 
 	trash[0] = 0;
 	trash[1] = 0;
@@ -26,12 +27,15 @@ static int	ft_image_init(t_map *map)
 	if (!(map->data = (int*)mlx_get_data_addr(map->img_ptr,
 		&trash[0], &trash[1], &trash[2])))
 		return (0);
-	if (!(tmp = ft_strjoin(map->path, "srcs/Filler.xpm")))
+	if (!(tmp = ft_strjoin(map->path, IMAGE_PATH)))
 		return (0);
-	if (!(map->filler = mlx_xpm_file_to_image(map->mlx_ptr,
-			tmp, &trash[0], &trash[1])))
+	if (!(path = ft_strjoin(tmp, "Filler.xpm")))
 		return (0);
 	free(tmp);
+	if (!(map->filler = mlx_xpm_file_to_image(map->mlx_ptr,
+			path, &trash[0], &trash[1])))
+		return (0);
+	free(path);
 	return (1);
 }
 

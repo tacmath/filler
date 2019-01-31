@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/26 11:53:23 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 16:52:17 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/31 12:11:13 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,7 +85,8 @@ static int	ft_loop(t_map *map)
 			ft_memdel((void**)&line);
 			if (!ft_put_plateau(map))
 				return (0);
-			ft_draw(map);
+			if (!(ft_draw(map)))
+				return (0);
 		}
 		else if (!ft_strncmp("== ", line, 3))
 			if (!ft_winner(map))
