@@ -62,7 +62,6 @@ int			ft_get_map(t_map *map, char *line)
 		if (!(map->map[n] = ft_get_line(map, map->map[n])))
 			return (0);
 	}
-	ft_get_enemie(map);
 	return (1);
 }
 

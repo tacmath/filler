@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/31 12:25:48 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/31 15:08:12 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/04 13:36:40 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,7 +65,7 @@ int			main(int ac, char **av)
 	height = ft_atoi(av[3]);
 	if (!(tmp = ft_strjoin("maps/", av[1])))
 		return (0);
-	if ((fd = open(av[1], O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
+	if ((fd = open(tmp, O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
 		return (0);
 	free(tmp);
 	ft_put_map(length, height, fd);

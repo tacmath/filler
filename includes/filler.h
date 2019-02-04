@@ -40,7 +40,6 @@ typedef struct s_map	t_map;
 
 int						ft_check_enemie_co(t_map *map, int x, int y);
 int						ft_close_point(t_map *map, int x, int y);
-void					ft_get_enemie(t_map *map);
 int						ft_get_map(t_map *map, char *line);
 int						ft_fill_map(t_map *map);
 int						ft_get_piece(t_map *map, int y);

@@ -53,25 +53,6 @@ void	ft_get_piece_len(t_map *map)
 	}
 }
 
-void	ft_get_enemie(t_map *map)
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y < map->size.y)
-	{
-		x = -1;
-		while (++x < map->size.x)
-			if (map->map[y][x] == -1)
-			{
-				map->enemie.x = x;
-				map->enemie.y = y;
-				return ;
-			}
-	}
-}
-
 void	ft_free_struct(t_map *map)
 {
 	int	n;
