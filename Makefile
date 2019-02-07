@@ -11,7 +11,7 @@
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME = mtaquet.filler
+NAME = $(addprefix vm_files/players/,mtaquet.filler)
 LIBDIR = libft/
 VISUDIR = visualisateur/
 GENDIR = map_generator/
@@ -47,9 +47,6 @@ gen: $(GENDIR)
 
 $(NAME): $(LIB) $(OBJ) $(INC)
 	gcc -o $@ $(OBJ) $(FLAG) $(LIB)
-
-move:
-	cp $(NAME) $(addprefix vm_files/players/,$(NAME))
 
 clean:
 	rm -f $(OBJ)

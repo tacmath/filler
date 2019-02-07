@@ -62,10 +62,8 @@ int			main(void)
 {
 	t_map	*map;
 	char	*line;
-	int		n;
 
 	line = 0;
-	n = 0;
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	if (ft_init(map) < 1)
